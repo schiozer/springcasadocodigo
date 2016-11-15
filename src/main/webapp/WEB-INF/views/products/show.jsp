@@ -28,42 +28,28 @@
 					
 					<nav id="main-nav">
 						<ul class="clearfix">
-							<li><a href="${spring:mvcUrl('cartItems').build()}" rel="nofollow">Seu carrinho (${shoppingCart.quantity}) </a></li>
-							<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre nós </a></li>
-							<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes </a></li>	
+							<!-- 
+							     <li><a href="${spring:mvcUrl('cartItems').build()}" rel="nofollow">Seu carrinho (${shoppingCart.quantity}) </a></li>
+							     <span>Seu carrinho (${sessionScope['scopedTarget.shoppingCart'].quantity})</span>
+							     quando usamos um proxy scoped para possibilitar uso de componente de escopo menor dentro de escopo maior
+							     that proxyMode = ScopedProxyMode.TARGET_CLASS thing
+							     então precisamos utilizar a variável sessionScope do jsp, que deixa as varíveis disponíveis ... 
+							     na verdade deve ser criado um proxy para a sessão que gerencia todos os componentes.
+							 -->
+							 <span>Seu carrinho (${shoppingCart.quantity})</span>
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</header>
 	
-		<nav class="categories-nav">
-			<ul class="container">
-				<li class="category"><a href="http://www.casadocodigo.com.br">Home</a>
-				<li class="category"><a href="/collections/livros-de-agile">Agile</a>
-				<li class="category"><a href="/collections/livros-de-front-end">Front End</a>
-				<li class="category"><a href="/collections/livros-de-games">Games</a>
-				<li class="category"><a href="/collections/livros-de-java">Java</a>
-				<li class="category"><a href="/collections/livros-de-mobile">Mobile</a>
-				<li class="category"><a	href="/collections/livros-desenvolvimento-web">Web</a>
-				<li class="category"><a href="/collections/outros">Outros</a>
-			</ul>
-		</nav>
-	
 		<article id="${product.title}" itemscope itemtype="http://schema.org/Book">
 		
 			<header id="product-highlight" class="clearfix">
 				<div id="product-overview" class="container">
-					<img itemprop="image" width="280px" height="395px"
-						src=''
-						class="product-featured-image" alt="${product.title}">
 					<h1 class="product-title" itemprop="name">${product.title}</h1>
-					<p class="product-author">
-						<span class="product-author-link"> ${product.title} </span>
-					</p>
-	
-					<p itemprop="description" class="book-description">
-					${product.description}
+					<p itemprop="description" class="book-description">${product.description}</p>
+					<p>
 					 Veja o <a href="<c:url value='/${product.summaryPath}'/>" target="_blank">sum&#225;rio</a> completo do livro!
 					</p>
 				</div>
@@ -97,26 +83,10 @@
 	
 			<div class="container">
 	
-				<section class="author product-detail" itemprop="author" itemscope itemtype="http://schema.org/Person">
-					
-					<h2 class="section-title" itemprop="name">${product.title}</h2>
-					<span itemprop="description">
-						<p class="book-description">${product.description}</p>
-					</span>
-				
-				</section>
-	
 				<section class="data product-detail">
 					<h2 class="section-title">Dados do livro:</h2>
 					<p>
 						Número de paginas: <span itemprop="numberOfPages">${product.pages}</span>
-					</p>
-	
-	
-					<p></p>
-					<p>
-						Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta
-							uma errata</a>
 					</p>
 				</section>
 			</div>	

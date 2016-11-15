@@ -6,12 +6,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+
 @Component
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = WebApplicationContext.SCOPE_SESSION)
+
+/* Esse proxy mode deve ser usado quando queremos colocar um objeto de escopo menor em um objeto de escopo maior.
+ * por exemplo o controller sendo escopo aplicação e esse aqui sessão. Dessa forma, o Spring acaba criando um Proxy usando a lib cglib.
+ * gera um proxy de acesso ao ShoppingCart. Eu não vou fazer isso, irei deixar o controller com escopo de requisição que é o que uma aplicação web deve fazer
+ * import org.springframework.context.annotation.ScopedProxyMode;
+ * , proxyMode = ScopedProxyMode.TARGET_CLASS) */
 public class ShoppingCart {
 
 	private Map<ShoppingItem, Integer> items = new LinkedHashMap<ShoppingItem, Integer>();

@@ -29,6 +29,11 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
+		/* Podemos ensinar ao SpringMVCque queremos que todos os nossos objetos
+		* gerenciados fiquem disponíveis para uso, através da Expression Language. */
+		//resolver.setExposeContextBeansAsAttributes(true);
+		/*Ou então para não liberar todo mundo, damos acesso apenas aqueles que queremos.*/
+		resolver.setExposedContextBeanNames("shoppingCart");
 		return resolver;
 	}
 	
