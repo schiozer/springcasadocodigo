@@ -40,16 +40,18 @@ public class ProductsController {
 	@RequestMapping(method=RequestMethod.POST, name="saveProduct")
 	public ModelAndView save(MultipartFile summary, @Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 		
-		System.out.println(summary.getName() + ";" + summary.getOriginalFilename());
-		
 		if(bindingResult.hasErrors()) {
 			return form(product);
 		}
-		String webPath = fileSaver.write("uploaded-images",summary);
 		
-		System.out.println("Cagão");
-		
-		product.setSummaryPath(webPath);
+		if (!summary.getOriginalFilename().isEmpty() && !summary.getOriginalFilename().equals(null)) {
+			
+			System.out.println("Salvando arquivo " + summary.getOriginalFilename());
+			String webPath = fileSaver.write("uploaded-images",summary);
+			product.setSummaryPath(webPath);
+		} else {
+			System.out.println("Não vou salvar nenhum arquivo");	
+		}
 		
 		productDAO.save(product);
 		System.out.println("Cadastrando o produto "+product);
