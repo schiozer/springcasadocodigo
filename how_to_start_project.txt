@@ -1,3 +1,18 @@
 
+iniciando JBoss Forge para criar o projeto
+$caminhoParaSuaInstalacao/bin/forge
+
+criando projeto com JBoss Forge
+
+project-new --named casadocodigo
+
+Baixa Spring Tools Suite
+
+copiei para program file e depois abrir e mandar um import maven project
+
+criei um script para criar o schema do banco, pois quem criará o banco propriamente dito será o JPA.
+
+E eu não vou deixar diferente não ... pelo menos não por enquanto ... agora, se eu quiser eu posso 
+deixar a aplicação se resolver ou então criar eu mesmo
 
 estou na página 113
