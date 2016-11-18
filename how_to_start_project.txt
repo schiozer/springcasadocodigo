@@ -15,4 +15,19 @@ criei um script para criar o schema do banco, pois quem criará o banco propriam
 E eu não vou deixar diferente não ... pelo menos não por enquanto ... agora, se eu quiser eu posso 
 deixar a aplicação se resolver ou então criar eu mesmo
 
-estou na página 113
+estou na página 119
+
+Último Erro ...
+
+
+Stacktrace:] with root cause
+javax.servlet.jsp.JspTagException: No message found under code 'navigation.category.agile' for locale 'en_US'.
+	at org.springframework.web.servlet.tags.MessageTag.doEndTag(MessageTag.java:202)
+	at org.apache.jsp.tag.web.page_tag._jspx_meth_spring_005fmessage_005f0(page_tag.java:462)
+	at org.apache.jsp.tag.web.page_tag.doTag(page_tag.java:235)
+	at org.apache.jsp.WEB_002dINF.views.shoppingCart.items_jsp._jspx_meth_customTags_005fpage_005f0(items_jsp.java:207)
+	at org.apache.jsp.WEB_002dINF.views.shoppingCart.items_jsp._jspService(items_jsp.java:149)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+
+Preciso trazer o messages em inglês muito provavelmente. Como eu não manjo porra nenhuma de JSP estou apanhando com esses templates, mas é nói.
+https://github.com/livrospringmvc/lojacasadocodigo/tree/master/src/main/webapp/WEB-INF

@@ -28,15 +28,16 @@
 					
 					<nav id="main-nav">
 						<ul class="clearfix">
-							<!-- 
-							     <li><a href="${spring:mvcUrl('cartItems').build()}" rel="nofollow">Seu carrinho (${shoppingCart.quantity}) </a></li>
+							<li>
+							     <a href="${spring:mvcUrl('SCC#items').build()}" rel="nofollow">Seu carrinho (${shoppingCart.quantity}) </a>
+							</li>
+							<!--
 							     <span>Seu carrinho (${sessionScope['scopedTarget.shoppingCart'].quantity})</span>
 							     quando usamos um proxy scoped para possibilitar uso de componente de escopo menor dentro de escopo maior
 							     that proxyMode = ScopedProxyMode.TARGET_CLASS thing
 							     então precisamos utilizar a variável sessionScope do jsp, que deixa as varíveis disponíveis ... 
 							     na verdade deve ser criado um proxy para a sessão que gerencia todos os componentes.
 							 -->
-							 <span>Seu carrinho (${shoppingCart.quantity})</span>
 						</ul>
 					</nav>
 				</div>

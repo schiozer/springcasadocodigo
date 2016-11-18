@@ -48,7 +48,7 @@ public class ShoppingCartController {
 		return item;
 	}
 
-	@RequestMapping(method=RequestMethod.GET, name="cartItems")
+	@RequestMapping(method=RequestMethod.GET)
 	public String items(){
 		return "shoppingCart/items";
 	}
