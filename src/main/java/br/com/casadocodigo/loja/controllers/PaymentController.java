@@ -35,7 +35,7 @@ public class PaymentController {
 			
 			String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
 			
-			return "redirect:/payment/success";
+			return "redirect:payment/success";
 		
 		} catch (HttpClientErrorException exception) {
 			
