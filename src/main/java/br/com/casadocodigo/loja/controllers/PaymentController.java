@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.ModelAndView;
 
+import br.com.casadocodigo.loja.models.BookType;
 import br.com.casadocodigo.loja.models.PaymentData;
+import br.com.casadocodigo.loja.models.Product;
 import br.com.casadocodigo.loja.models.ShoppingCart;
 
 @Controller
@@ -35,12 +38,19 @@ public class PaymentController {
 			
 			String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
 			
-			return "redirect:payment/success";
+			return "redirect:/payment/success";
 		
 		} catch (HttpClientErrorException exception) {
 			
 			return "redirect:/payment/error";
 		}
 	}
+	
+	@RequestMapping("/success")
+	public String success() {
+
+		return "payment/success";
+	}
+
 	
 }
