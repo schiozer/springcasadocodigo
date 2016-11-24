@@ -203,3 +203,31 @@ gitk&
 
 lá tem como fazer o merge de maneira visual escolhendo quem fica (remoto ou local) facilitando bastante o trabalho.
 Depois é só fazer um novo commit e mais um pull just in case
+
+
+Testes usando SSH keys
+
+Esse site tem as dicas
+https://help.github.com/articles/generating-an-ssh-key/
+
+Para alterar de HTTPS para SSH
+
+T1113347@NSAONBINV006491 MINGW64 /d/personal/Spring/workspace/casadocodigo (master)
+$ git remote -v
+origin  https://github.com/schiozer/springcasadocodigo.git (fetch)
+origin  https://github.com/schiozer/springcasadocodigo.git (push)
+
+Aqui acima verificamos que estamos usando HTTPS
+
+Então agora trocarmos para SSH e depois vemos novamente. Lembrando que para fazer isso precisamos seguir os passos de geração de chave e incluir a chave no github
+
+T1113347@NSAONBINV006491 MINGW64 /d/personal/Spring/workspace/casadocodigo (master)
+$ git remote set-url origin git@github.com:schiozer/springcasadocodigo.git
+
+T1113347@NSAONBINV006491 MINGW64 /d/personal/Spring/workspace/casadocodigo (master)
+$ git remote -v
+origin  git@github.com:schiozer/springcasadocodigo.git (fetch)
+origin  git@github.com:schiozer/springcasadocodigo.git (push)
+
+T1113347@NSAONBINV006491 MINGW64 /d/personal/Spring/workspace/casadocodigo (master)
+$
