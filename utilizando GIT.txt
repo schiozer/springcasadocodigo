@@ -1,0 +1,205 @@
+
+
+
+Utilizando Git
+==============
+
+Devemos primeiro entrar no Gitbash
+
+É preciso gerar uma chave pública, utilizando comando ssh como abaixo:
+
+$ ssh-keygen.exe -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/t1113347/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/t1113347/.ssh/id_rsa.
+Your public key has been saved in /c/Users/t1113347/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:hLPbJkIr9O1vbePIyiq2GRgBxwIVZvHsaRe6mMF+NYs T1113347@NSAONBINV006491
+The key's randomart image is:
++---[RSA 2048]----+
+|+oBo             |
+|o+.o   .         |
+|..  o + .        |
+| o . o =         |
+|. + * = S        |
+| = B B =         |
+|. * E = o.       |
+|  o= + +..+      |
+| .oo..+++o..     |
++----[SHA256]-----+
+
+T1113347@NSAONBINV006491 MINGW64 ~
+
+
+Essas chaves são para uitlizar com o Git, é preciso guardar essa chave.
+
+depois disso tem um processo para atualização da sua informação:
+git config --global user.name "schiozer"
+git config --global user.email "schiozer@yahoo.com.br"
+
+vi "C:\Users\t1113347\.gitconfig", esse é o arquivo que mantem suas configurações
+
+Incluir o seguinte:
+
+[color]
+        status = auto
+        branch = auto
+        interactive = auto
+        diff=auto
+
+
+
+git help e o comando gera o manual do comando
+
+git status mostra os detalhes do seu dir no git
+o git possui três áreas de trabalho:
+
+1) .git é o repositório de dados
+2) working directory é o diretório que estamos, é o snapshot que na verdade é o diretório do qual geramos o .git. Area de trabalho
+3) área de stage e índice. Área reservada aonde será acumulados as alterações antes de realizar o commit
+4) stash, mencionada abaixo
+
+
+criando o projeto
+
+vá no projeto e manda
+git init
+
+isso inicia o projeto.
+
+depois disso, usamos o git status para verificar.
+
+então configuramos o .gitignore a fim de definir quem são os arquivos que não serão incluídos no repositório
+
+
+
+git log --stat
+mostra estatística do último commit
+
+Área de stash
+=============
+Vamos supor que você precisa realizar uma alteração no seu código tipo um ticket que não pode contas com as novas alterações que estão pendentes de commit
+
+Para isso temos a quarta área de stash que é temporária para colocar alterações que você ainda não quer subir, quando tem que parar no meio ... vamos ver
+
+Quando fazemos git status, aprece os arquivos adicionados ao índice. Aí usamos:
+git stash e ele adiciona que está no índice no stash, tanto que se você fizer um git status depois dar aparecer nada.
+
+para consultar a área de stash, fazendo um git stash list
+
+depois de fazermos todas as alterações que precisavamos podemos voltar a área de stash de volta.
+
+para isso:
+
+git stash apply
+
+convencione a não usar sempre o master, sempre use um branch
+
+git branch, lista os branches
+
+git checkout -b <nome do branch>
+
+git checkout <branch>, vai para determinado branch
+
+git log mostra log do commits
+
+git reset HEAD~1 --hard
+volta ~1 commit para traz, HEAD é a cabeça dos commit, ou seja, pega do primeiro ... se olhar o help deve ter opções de defazer outros commits e tals
+
+
+
+quando queremos fazer uma espécie de merge, fazemos um rebase.
+
+Tipo ... tenho o branch desenvolvimento que possui alterações
+Tenho o master que tem suas alterações
+Para trazer as alterações do master para o desenvolvimento deve-se usar
+git rebase master, estando no desenvolvimento
+
+gitk na linha de comando enxerga os commits
+
+diferença entre merge e rebase
+
+o merge manter as alterações nos devidos branch
+
+então seria algo do tipo:
+
+		 ---------C3-------C4		desenvolvimento
+		/					 \	
+C1----C2-----C5----------------C6	master
+
+Quando usamos merge trazemos as alterações de um branch para outro, gerando um novo commit, C6 no exemplo, que representa o todo.
+
+rebase, traz todas as alterações para o branch desejado, alinhando as alterações. Nesse cenários, o C5 seria rebobinado, C3 e C4 vem
+para o master e depois é gerado um C5' como abaixo e ambos branches apontam para C5'
+
+						  / desenvolvimento
+C1----C2----C3----C4----C5'	master
+
+o rebase é destrutivo e o merge não.
+
+
+
+para "clonar o repositório" git clone <diretório/.git> <caminho/nome do clone>
+
+exemplo: git clone https://github.com/schiozer/springcasadocodigo.git casadocodigo
+
+Quando clonamos um repositório, ele vem com o branch que o origin está apontando.
+
+Fiz um clone do Deveops e estava no branch desenvolvimento.
+
+Se quiser ver todos os branches, git branch -a como no exemplo:
+$ git branch -a
+* desenvolvimento
+  remotes/origin/HEAD -> origin/desenvolvimento
+  remotes/origin/desenvolvimento
+  remotes/origin/list
+  remotes/origin/master
+
+Estando no repositório remoto é possível criar branches a partir de branches da origin, exemplo:
+
+git checkout -b master origin/master
+
+quando fazemos commits nos clones, essas alterações só ficam dentro do 
+
+
+git push origin <branch>, esse comanda faz que atualizamos o repositório de origem com os dados do Clone
+
+git remote add origin diretório de clone, incluindo como final arquivo .git
+
+faz apontar o origin para um determinado repositório. conseguimos apontar um clone para outro
+
+git pull origin, faz trazer os arquivo da origem, deve ser possível trazer o branch também
+
+
+Precisamos aprender também a lidar com repositórios centralizados, que é ter um servidor GIT na sua empresa. O vídeo 10 trata disso.
+
+E vamos finalmente ao github. Logue no github e crie um repositório indo em repositories e new.
+
+depois disso é preciso criar o link na tua máquina
+
+
+Possui repositório ?
+
+Não, faz o processo de criação, vai no repositório e tals e cria.
+
+depois
+entra no diretório e
+
+git remote add origin git@github.com:schiozer/repo.git
+git push origin master
+
+para baixar do repositório
+
+git pull origin
+o pull nada mais é que um fetch com merge ou seja
+git fetch origin --verbose
+git merge FETCH_HEAD
+
+Como fazer um update do github ...
+Caso em um pull ou fetch ele reclame de conflito, execute o gitk (a partir do guit bash)
+gitk&
+
+lá tem como fazer o merge de maneira visual escolhendo quem fica (remoto ou local) facilitando bastante o trabalho.
+Depois é só fazer um novo commit e mais um pull just in case

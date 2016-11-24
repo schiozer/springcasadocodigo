@@ -1,18 +1,9 @@
 	<footer id="layout-footer">
 		<div class="clearfix container">
 
-
-
-
-
 			<nav class="breadcrumbs" itemprop="breadcrumb"
 				xmlns:v="http://rdf.data-vocabulary.org/#"> 
 			</nav>
-
-
-
-
-
 
 			<div id="collections-footer">
 				<!-- cdc-footer -->
