@@ -12,8 +12,6 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String index(){
-		System.out.println("Carregando os produtos");
-
 		return "hello-world";
 	}
 	 

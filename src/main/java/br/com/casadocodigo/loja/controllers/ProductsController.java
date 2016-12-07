@@ -4,6 +4,8 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -38,6 +40,10 @@ public class ProductsController {
 	*/
 	
 	@RequestMapping(method=RequestMethod.POST, name="saveProduct")
+	/*Esse annottation atualiza o cache de nome books. Na verdade ele invalida o cache, retirando os valores.
+	 * allEntries para indicar que queremos que todos os valores sejam retirados.
+	 * dessa forma, na próxima vez que o list for executado, não haverá cache e ele será construído novamente*/
+	@CacheEvict(value="books", allEntries=true)
 	public ModelAndView save(MultipartFile summary, @Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 		
 		if(bindingResult.hasErrors()) {
@@ -91,7 +97,10 @@ public class ProductsController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
+	@Cacheable(value="books")
 	public ModelAndView list() {
+		
+		System.out.println("Carregando os produtos");
 		
 		ModelAndView modelAndView = new ModelAndView("products/list");
 		modelAndView.addObject("products", productDAO.list());

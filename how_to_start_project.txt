@@ -23,4 +23,4 @@ javax.servlet.jsp.JspTagException: No message found under code 'navigation.categ
 Era a mesma parada do message que passei perrengue com JSF. Foi só copiar a tag 'navigation.category.agile' para dentro do meu properties
 não vou procurar como fazer US ou PT agora.
 
-estou na página 127
+estou na página 135, capítulo 10

@@ -1,5 +1,8 @@
 package br.com.casadocodigo.loja.conf;
 
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,6 +25,7 @@ import br.com.casadocodigo.loja.models.ShoppingCart;
 
 @EnableWebMvc
 @ComponentScan( basePackageClasses = { HomeController.class, ProductDAO.class, FileSaver.class, ShoppingCart.class} )
+@EnableCaching
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 
 	@Bean
@@ -37,6 +41,32 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		resolver.setExposedContextBeanNames("shoppingCart");
 		return resolver;
 	}
+	
+	/*
+	 * A referência à interface CacheManager é importante, pois sempre que quisermos usar uma implementação que faça o papel do cache
+	 * para a gente, teremos que buscar classes que implementem essa interface.
+	 */
+	/* E quando quisermos um cache mais encarnado !?!?!?!?!?! que podemos dizer tempo, limite de objetos, etc ...
+	 * Podemos utilizar a Guava, uma biblioteca criada pelo Google com várias classes que podem ser úteis em qualquer
+	 * projeto. Siga este link: https://code.google.com/p/guava-libraries/wiki/GuavaExplained para mais detalhes sobre o que é oferecido.
+	 * 
+	 * Além das opções citadas aqui no livro, o Spring também suporta outros provedores de cache, já prontos.
+	 * 		• EhCache
+	 * 		• GemFire
+	 * 		• JSR-107, especificação do Java para padronizar as APIs de cache.
+	 * */
+	@Bean
+	public CacheManager cacheManager(){
+
+		/*
+		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(5, TimeUnit.MINUTES);
+		GuavaCacheManager cacheManager = new GuavaCacheManager();
+		cacheManager.setCacheBuilder(builder);
+		*/
+		
+		return new ConcurrentMapCacheManager();
+	}
+	
 	
 	/*Um detalhe muito importante, mas não muito claro, é que o nome do método deve ser messageSource. 
 	 * O Spring MVC vai procurar por um Bean registrado com esse nome. Uma alternativa, para não ter que 
