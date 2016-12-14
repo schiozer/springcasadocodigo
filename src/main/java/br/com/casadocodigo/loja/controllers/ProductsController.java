@@ -1,5 +1,7 @@
 package br.com.casadocodigo.loja.controllers;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -108,6 +111,16 @@ public class ProductsController {
 		return modelAndView;
 	}
 
+	@RequestMapping(method = RequestMethod.GET,value="json")
+	@ResponseBody
+	public List<Product> listJson() {
+		
+		System.out.println("Carregando os produtos JSON");
+
+		return productDAO.list();
+	}
+	
+	
 	/*
 	 * O endereço que aparece é o casadocodigo/produtos/show?id=2.
 	 *	Na verdade, essa é a maneira padrão de passar parâmetros via get só que, se
