@@ -101,6 +101,10 @@ public class ProductsController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	@Cacheable(value="books")
+	/*
+	 * Caso você queira forçar o retorno em JSON pelo navegador, basta que acesse a URL com a extensão .json. 
+	 * Por exemplo, http://localhost:8080/casadocodigo/products.json.
+	 */
 	public ModelAndView list() {
 		
 		System.out.println("Carregando os produtos");
@@ -111,7 +115,12 @@ public class ProductsController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.GET,value="json")
+	/*
+	 * http://localhost:8080/casadocodigo/products/json
+	 * nesse cenário, eu utilizei a contrução de URL dinâminca para gerar o JSON
+	 * 
+	 * */
+	@RequestMapping(method = RequestMethod.GET, value="json")
 	@ResponseBody
 	public List<Product> listJson() {
 		

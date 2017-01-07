@@ -23,4 +23,18 @@ javax.servlet.jsp.JspTagException: No message found under code 'navigation.categ
 Era a mesma parada do message que passei perrengue com JSF. Foi só copiar a tag 'navigation.category.agile' para dentro do meu properties
 não vou procurar como fazer US ou PT agora.
 
-estou na página 135, capítulo 10
+testando interfaces 
+===============================================
+No primeiro exemplo, fizemos uma requisição indicando que desejamos o retorno no formato application/json. Isso é feito através do cabeçalho
+Accept. Perceba que no segundo já indicamos que queremos HTML como
+formato. Essa técnica é conhecida como Content Negotiation e é muito utilizada
+em integrações baseadas no HTTP, também conhecida como REST.
+A parte bem legal é que o Spring MVC já oferece esse suporte para nós.
+Precisamos apenas ensiná-lo que agora ele tem que decidir qual formato retornar
+baseado no Accept.
+
+curl -H "Accept:application/json" -X GET "http://localhost:8080/casadocodigo/products"
+
+curl -H "Accept:text/html" -X GET "http://localhost:8080/casadocodigo/products"
+
+estou na página 143, capítulo 11
