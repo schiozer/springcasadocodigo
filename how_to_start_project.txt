@@ -37,4 +37,5 @@ curl -H "Accept:application/json" -X GET "http://localhost:8080/casadocodigo/pro
 
 curl -H "Accept:text/html" -X GET "http://localhost:8080/casadocodigo/products"
 
-estou na página 143, capítulo 11
+estou na página 144, capítulo 11
+<repositories>
