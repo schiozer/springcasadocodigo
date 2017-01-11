@@ -98,13 +98,13 @@ public class ProductsController {
 		modelAndView.addObject("types", BookType.values());
 		return modelAndView;
 	}
-	
-	@RequestMapping(method=RequestMethod.GET)
-	@Cacheable(value="books")
+
 	/*
 	 * Caso você queira forçar o retorno em JSON pelo navegador, basta que acesse a URL com a extensão .json. 
 	 * Por exemplo, http://localhost:8080/casadocodigo/products.json.
 	 */
+	@RequestMapping(method=RequestMethod.GET)
+	@Cacheable(value="books")
 	public ModelAndView list() {
 		
 		System.out.println("Carregando os produtos");
