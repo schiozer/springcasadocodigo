@@ -22,12 +22,14 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <dependencies>
+ 
   
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-webmvc</artifactId>
-          <version>4.1.0.RELEASE</version>
+  <dependencies>
+
+	  <dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-webmvc</artifactId>
+		  <version>4.1.0.RELEASE</version>
       </dependency>
       
       <dependency>
@@ -115,13 +117,13 @@
 		<artifactId>hibernate-jpa-2.1-api</artifactId>
 		<version>1.0.0.Final</version>
 	</dependency>
-	
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-orm</artifactId>
-		<version>4.1.0.RELEASE</version>
-	</dependency>
-	
+
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>4.1.0.RELEASE</version>
+    </dependency>	
+
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
@@ -161,50 +163,31 @@
 	    <version>20.0</version>
 	</dependency>
 
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-context-support</artifactId>
-	    <version>4.3.4.RELEASE</version>
-	</dependency>
-
     <!-- Spring security -->
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-config</artifactId>
-        <version>4.2.1.RELEASE</version>
+        <version>4.0.0.RELEASE</version>
     </dependency>
     
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-taglibs</artifactId>
-        <version>4.2.1.RELEASE</version>
+        <version>4.0.0.RELEASE</version>
     </dependency>
     
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-web</artifactId>
-        <version>4.2.1.RELEASE</version>
+        <version>4.0.0.RELEASE</version>
     </dependency>
     
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-core</artifactId>
-        <version>4.2.1.RELEASE</version>
+        <version>4.0.0.RELEASE</version>
     </dependency>
 
   </dependencies>
- 
-  <repositories>
-    
-    <repository>
-        <id>spring-milestones</id>
-        <name>Spring Milestones</name>
-        <url>http://repo.spring.io/milestone</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-    </repository>
-    
-  </repositories>
-  
+
 </project>

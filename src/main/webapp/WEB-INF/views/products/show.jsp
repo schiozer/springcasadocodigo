@@ -2,6 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="pt"><![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="pt"><![endif]-->
@@ -75,7 +76,18 @@
 						</c:forEach>
 	
 					</ul>
-	
+					
+					<!-- Asigla CSRF significa Cross-Site Request Forgery e éumtipo de ataque que pode ser feito contra sua aplicação. 
+					     A ideia basicamente é que dados possam ser enviados para a nossa aplicação sendo provenientes de uma outra página
+                         qualquer, aberta no seu navegador A variável de nome _csrf contém a referência para um objeto do tipo
+                         DefaultCsrfToken. 
+                         
+                         O livro mostra algumas maneiras de como usar e uma delas é utilizar um annotation que está deprecated
+                         Como mostrado no SecurityCOnfiguration.java 
+                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    -->
+	                <security:csrfInput/>
+	                
 					<input type="submit" class="submit-image icon-basket-alt" alt="Compre agora" title="Compre agora '${product.title}'!" value="comprar"/>
 	
 				</form>

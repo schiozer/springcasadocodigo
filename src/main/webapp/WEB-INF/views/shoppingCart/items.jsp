@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="customTags"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <fmt:message key="shoppingCart.title" var="title"/>
 <customTags:page bodyClass="cart" title="${title}">
@@ -83,6 +84,18 @@
 				<tr>
 					<td colspan="2">
 						<form:form action="${spring:mvcUrl('PC#checkout').build()}" method="post">
+		                    <!-- Asigla CSRF significa Cross-Site Request Forgery e éumtipo de ataque que pode ser feito contra sua aplicação. 
+		                         A ideia basicamente é que dados possam ser enviados para a nossa aplicação sendo provenientes de uma outra página
+		                         qualquer, aberta no seu navegador A variável de nome _csrf contém a referência para um objeto do tipo
+		                         DefaultCsrfToken. 
+		                         
+		                         O livro mostra algumas maneiras de como usar e uma delas é utilizar um annotation que está deprecated
+		                         Como mostrado no SecurityCOnfiguration.java 
+		                         
+		                         se não quiser utilizar as taglibs JSP, podemos utilizar
+		                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		                    -->
+						    <security:csrfInput/>
 							<input type="submit" class="checkout" name="checkout" value="Finalizar compra" id="checkout" />
 						</form:form>
 					</td>
