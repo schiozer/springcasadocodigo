@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /*
  * Aqui herdamos da classe WebSecurityConfigurerAdapter, que já fornece toda a infraestrutura pronta para começarmos a fazer nossas
@@ -50,7 +51,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST,"/products").hasRole("ADMIN")
 			.antMatchers("/products/**").permitAll()
 			.anyRequest().authenticated()
-			.and().formLogin();
+			.and().formLogin().loginPage("/login").permitAll()
+			.and()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+			/*Devemos invocar o método permitAll para informar que esse endereço está liberado para todos os usuários*/
 		}
 
 }

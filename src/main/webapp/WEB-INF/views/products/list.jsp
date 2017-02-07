@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,24 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+	    <security:authorize access="isAuthenticated()">
+	       <security:authentication property="principal" var="user"/>
+	       <div>
+	           Olá ${user.name}
+	       </div>
+	    </security:authorize>
+	    
+	    <!--
+	    O atributo access recebe algumas expressões que são suportadas pelo Spring Security. Foi usada a isAuthenticated(), mas
+        podiamser várias outras. Outramuito comum é hasRole.
+        Consulte http://docs.spring.io/spring-security/site/docs/4.0.0.M2/reference/htmlsingle/#el-access
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+               <li><a href="${spring:mvcUrl('PC#form').build()}">
+                    Cadastrar novo produto</a>
+                </li>
+        </sec:authorize>	    
+	     
+	     -->
 		<h3>${sucesso}</h3>
 		<table>
 			<tr>

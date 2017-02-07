@@ -9,6 +9,12 @@
 	</head>
 	<body>
 		 <form:form action="${spring:mvcUrl('saveProduct').build()}" method="post" commandName="product" enctype="multipart/form-data">>
+		 <!-- Posicionamento da mensagem de erro - As mensagens de erros estão sendo exibidas no início da nossa tela, mas
+              não é incomum que o cliente requisite que a mesma mensagem seja exibida ao lado do campo
+              O ponto que precisa de mais atenção na tag form é o atributo commandName. Ele tem o mesmo propósito do atributo name na tag
+              hasBindErrors, ou seja, recebe o tipo do parâmetro que está sendo validado pelo nosso controller, com a primeira letra em minúsculo. 
+              Apenas para refrescar a memória: save(@Valid Product product....) 
+         -->
 
 			<div>
 			<!-- O atributo name dos campos de entrada devem bater com o nome dos atributos
