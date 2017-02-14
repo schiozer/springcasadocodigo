@@ -10,11 +10,9 @@
 
 						<li><a href="${spring:mvcUrl('SCC#items').build()}" rel="nofollow">Seu carrinho (${shoppingCart.quantity}) </a></li>
 
-						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre
-								nós </a></li>
+						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Em breve G_COACHEE</a></li>
 
-						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas
-								Frequentes </a></li>
+						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
 								
 						<li>
 							<a href="<c:url value="/produtos?locale=pt"/>">Português</a>
