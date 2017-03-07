@@ -14,12 +14,13 @@
 
 						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
 								
+                        <!-- Likns para permitir que o usuário escolha a lingua -->
 						<li>
-							<a href="<c:url value="/produtos?locale=pt"/>">Português</a>
-						</li>		
+							<a href="<c:url value="/products?locale=pt"/>">Português</a>
+						</li>
 						<li>
-							<a href="<c:url value="/produtos?locale=en_US"/>">Inglês</a>
-						</li>		
+							<a href="<c:url value="/products?locale=en_US"/>">Inglês</a>
+						</li>
 
 					</ul>
 				</nav>
@@ -30,7 +31,6 @@
 		<ul class="container">
 			<li class="category"><a href="http://www.casadocodigo.com.br">Home</a>
 			<li class="category"><a href="/collections/livros-de-agile">
-					<fmt:message key="navigation.category.agile"/>
 					<spring:message code="navigation.category.agile"/> 
 					</a>
 			<li class="category"><a href="/collections/livros-de-front-end">

@@ -18,9 +18,13 @@ import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -143,6 +147,28 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		resolver.setContentNegotiationManager(manager);
 		
 		return resolver;
+	}
+	
+	/*
+	 * Suporte para multinguas do Spring MVC 
+	 * Interceptors funcionamcomo filtros, só que dentro do framework. A ideia é que eles possam ser executados antes ou depois
+	 * da execução de algummétodo dos nossos controllers. Uma aplicação comum deles é quando o programador decide fazer o processo 
+	 * de autenticação na mão. Como ele tem que verificar se o usuário está logado para toda requisição, ele cria um interceptor 
+	 * para fazer essa checagem antes dos métodos dos controllers. No nosso caso, o LocaleChangeInterceptor verifica se foi
+	 * usado o parâmetro locale na requisição e, em caso positivo, ele efetua a troca do idioma.
+	 * */
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LocaleChangeInterceptor());
+	}
+	
+	
+	/*optamos por usar a estratégia que guarda o idioma preferido em um cookie. Existem outras, como a SessionLocaleResolver, 
+	 * que permite que a preferência fique guardada diretamente na sessão do usuário.
+	 * */
+	@Bean
+	public LocaleResolver localeResolver(){
+		return new CookieLocaleResolver();
 	}
 
 }

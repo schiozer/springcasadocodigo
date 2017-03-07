@@ -1,12 +1,15 @@
 package br.com.casadocodigo.loja.daos;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.casadocodigo.loja.models.BookType;
 import br.com.casadocodigo.loja.models.Product;
 
 @Repository
@@ -25,5 +28,23 @@ public class ProductDAO {
 	
 	public Product find(Integer id){
 		return manager.find(Product.class, id);
+	}
+	
+	/*
+	 * Testes de integração no DAO
+	 * 
+	 * Geralmente, os códigos que necessitam de alguma infraestrutura, por exemplo do acesso ao banco de dados, exigem que você 
+	 * faça bastante configuração e simule cenários, dos quais o seu framework já cuida para você. Para esses tipos de testes, 
+	 * o Spring pode lhe ajudar muito.
+	 * */
+	
+	public BigDecimal sumPricesPerType(BookType bookType) {
+		
+		TypedQuery<BigDecimal> query = manager.createQuery ("select sum(price.value) from Product p join p.prices price "
+															+ "where price.bookType =:bookType", BigDecimal.class);
+		
+		query.setParameter("bookType", bookType);
+		
+		return query.getSingleResult();
 	}
 }

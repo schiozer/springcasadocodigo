@@ -18,6 +18,15 @@
 		       <security:authentication property="principal" var="user"/>
 		       <div>
 		           Olá ${user.name}
+		           <br>
+		           <!-- Usando o spring para mostrar a mensagem -->
+		           <spring:message code="users.welcome" arguments="${user.name}"/>
+		           <br>
+                   <!-- Usando o JSTL para mostrar a mensagem -->
+                   <fmt:message key="users.welcome">
+                       <fmt:param value="${user.name}"/>
+                   </fmt:message>
+                   <br>
 		       </div>
 		    </security:authorize>
 		    

@@ -37,5 +37,14 @@ curl -H "Accept:application/json" -X GET "http://localhost:8080/casadocodigo/pro
 
 curl -H "Accept:text/html" -X GET "http://localhost:8080/casadocodigo/products"
 
-página 173
-Capitulo 13  - Organização do layout
+página 186
+O problema está dentro método save e não tem escapatória, o
+nosso EntityManager está nulo. Para o nosso DAO funcionar, um
+
+http://stackoverflow.com/questions/4414313/how-to-organize-java-properties-entries-for-internationalization
+
+
+Código Fonte do Projeto, precisamos pegar o ProductBuilder
+https://github.com/livrospringmvc
+
+https://github.com/livrospringmvc/lojacasadocodigo/blob/master/src/test/java/br/com/casadocodigo/loja/builders/ProductBuilder.java
