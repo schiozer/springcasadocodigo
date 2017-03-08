@@ -19,9 +19,11 @@ public class DataSourceConfigurationTest {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo_test");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigotest");
+		dataSource.setUsername( "casa" );
+		dataSource.setPassword( "casa" );
+		
+		System.out.println("Pegando Data Source de TEST");
 		
 		return dataSource;
 	}

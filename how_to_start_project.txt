@@ -37,9 +37,8 @@ curl -H "Accept:application/json" -X GET "http://localhost:8080/casadocodigo/pro
 
 curl -H "Accept:text/html" -X GET "http://localhost:8080/casadocodigo/products"
 
-página 186
-O problema está dentro método save e não tem escapatória, o
-nosso EntityManager está nulo. Para o nosso DAO funcionar, um
+página 193
+14.3 Testes do controller
 
 http://stackoverflow.com/questions/4414313/how-to-organize-java-properties-entries-for-internationalization
 

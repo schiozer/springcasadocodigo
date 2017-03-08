@@ -24,7 +24,7 @@ import br.com.casadocodigo.loja.models.Product;
 import org.junit.Assert; 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {DataSourceConfigurationTest.class, ProductDAO.class, JPAConfiguration.class})
+@ContextConfiguration(classes = {ProductDAO.class, DataSourceConfigurationTest.class})
 @ActiveProfiles("test")
 public class ProductDAOTest {
 

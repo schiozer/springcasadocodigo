@@ -1,8 +1,11 @@
 package br.com.casadocodigo.loja.conf;
 
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import br.com.casadocodigo.loja.daos.UserDAO;
@@ -40,4 +43,15 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		registration.setMultipartConfig( new MultipartConfigElement("") );
 	}
 
+	/* Como não definimos nenhum profile nela, o Datasource não consegue ser encontrado. Para consertamos isso, podemos configurar o profile
+	 * através de um parâmetro que deve ser lido no inicio do servidor. Podemos fazê-lo na classe ServletSpringMVC.
+	 * Código inserido para podermos descobrir qual datasource deve ser utilizado em aplicações web
+	 */
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+	
+		super.onStartup(servletContext);
+		servletContext.addListener(RequestContextListener.class);
+		servletContext.setInitParameter("spring.profiles.active", "dev");
+	}
 }

@@ -45,6 +45,8 @@ public class JPAConfiguration {
 		dataSource.setUsername( "casa" );
 		dataSource.setPassword( "casa" );
 		
+		System.out.println("Pegando Data Source de DEV");
+		
 		return dataSource;
 	}
 	
