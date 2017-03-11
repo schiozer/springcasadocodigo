@@ -10,11 +10,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.test.context.web.ServletTestExecutionListener;
 
 import br.com.casadocodigo.loja.builders.ProductBuilder;
 import br.com.casadocodigo.loja.conf.DataSourceConfigurationTest;
 import br.com.casadocodigo.loja.conf.JPAConfiguration;
+import br.com.casadocodigo.loja.conf.SecurityConfiguration;
 import br.com.casadocodigo.loja.models.BookType;
 import br.com.casadocodigo.loja.models.Product;
 /* Ocorrerá um erro de deprecated se usar o import abaixo
@@ -24,7 +30,7 @@ import br.com.casadocodigo.loja.models.Product;
 import org.junit.Assert; 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ProductDAO.class, DataSourceConfigurationTest.class})
+@ContextConfiguration(classes = {DataSourceConfigurationTest.class, ProductDAO.class, JPAConfiguration.class})
 @ActiveProfiles("test")
 public class ProductDAOTest {
 
