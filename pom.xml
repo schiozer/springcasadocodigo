@@ -15,6 +15,44 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
+      
+      <!-- 
+      Ao contrário da maioria dos hosts, o Heroku não pede que você suba o arquivo .war da sua aplicação para o Tomcat ou Jetty dele. Em vez disso, é
+        necessário usarmos uma outra versão do Tomcat, chamada de embedded. A diferença principal é que ele não suporta múltiplos contextos. Simplesmente
+        o rodamos, pode até ser a partir deummétodo main e passamos a localização do nosso war.
+        
+        java -jar target/dependency/webapp-runner.jar target/*.war
+        
+        O jar webapp-runner é que o vamos baixar para conseguir executar a versão minimalista do servidor.
+        
+        Adicionamosumplugin doMaven que realiza a cópia necessária para nós. Esse procedimento está também descrito na própria página doHeroku. 
+        Basta seguir o link: https://devcenter.heroku.com/articles/java-webapp-runner.
+       -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.3</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                       <goal>copy</goal>
+                    </goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.github.jsimone</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>7.0.57.2</version>
+                                <destFileName>
+                                webapp-runner.jar
+                                </destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>      
     </plugins>
   </build>
   <properties>
@@ -162,6 +200,12 @@
 	    <artifactId>guava</artifactId>
 	    <version>20.0</version>
 	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>4.1.0.RELEASE</version>
+	</dependency>
 
     <!-- Spring security -->
     <dependency>
@@ -211,6 +255,13 @@
 		<scope>test</scope>
 	</dependency>
 
+	<!-- email -->
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>1.4.7</version>
+	</dependency>
+	
   </dependencies>
-
+  
 </project>

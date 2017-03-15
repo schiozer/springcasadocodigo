@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -55,6 +56,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 			/*Devemos invocar o método permitAll para informar que esse endereço está liberado para todos os usuários*/
-		}
+	}
+	
+	/*
+	 * Se tivermos um js na pasta resources e eles precisar ser acessado, passará pelo security da mesma forma, solicitando
+	 * autenticação do usuário, isso não faz muito sentido. Sendo assim, é preciso ignorar os itens estáticos de nossas página
+	 * como conteúdo de código js
+	 * 
+	 * Ao contrário do primeiro configure, que recebe como argumento um objeto do tipo HttpSecurity, esse recebeum WebSecurity. Oprimeiro é utilizado para fazer a 
+	 * configuração geral. Como vimos, ele fazmuitomais coisas do que apenas permitir o acesso a algumas URLs. Este que estamos vendo agora é específico para a 
+	 * aplicação web. Por exemplo, estamos pedindo para o Spring Security ignorar qualquer acesso a URL que comece com resources 
+	 * 
+	 * Agora, quando você tentar acessa amesma URL, o servidor vai retornar o status 404. Oproblema é que a Servlet do SpringMVC está achando que você
+	 * está acessando um endereço mapeado para um controller, o que claramente não é o caso. Para resolver isso, vamos sobrescrever mais um método, agora
+	 * na nossa classe AppWebConfiguration.
+	 * 	 * */
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	
+		web.ignoring().antMatchers("/resources/**");
+		
+	}
 
 }

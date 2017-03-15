@@ -24,6 +24,7 @@ public class User implements UserDetails {
 	private String login;
 	private String password;
 	private String name;
+	private String email;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<>();
 	
@@ -75,5 +76,13 @@ public class User implements UserDetails {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

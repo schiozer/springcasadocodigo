@@ -37,13 +37,28 @@ curl -H "Accept:application/json" -X GET "http://localhost:8080/casadocodigo/pro
 
 curl -H "Accept:text/html" -X GET "http://localhost:8080/casadocodigo/products"
 
-página 193
-14.3 Testes do controller
+
 
 http://stackoverflow.com/questions/4414313/how-to-organize-java-properties-entries-for-internationalization
 
 
 Código Fonte do Projeto, precisamos pegar o ProductBuilder
-https://github.com/livrospringmvc
+https://github.com/livrospringmvc/lojacasadocodigo
 
+repositório
 https://github.com/livrospringmvc/lojacasadocodigo/blob/master/src/test/java/br/com/casadocodigo/loja/builders/ProductBuilder.java
+
+
+Deploy no Heroku
+
+Baixar o maven do próprio diretório da apache mesmo
+https://maven.apache.org/download.cgi
+
+instala dentro de alguma pasta, eu havia colocado dentro de java, coloca dentro do path e então executa
+
+mvn package
+
+para gerar o pacote de instalação
+
+página 211
+16.2 Qual banco será usado no Heroku

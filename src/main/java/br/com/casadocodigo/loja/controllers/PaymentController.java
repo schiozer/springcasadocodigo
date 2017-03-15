@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.async.DeferredResult;
 
 import br.com.casadocodigo.loja.models.ShoppingCart;
+import br.com.casadocodigo.loja.models.User;
 import br.com.casadocodigo.loja.service.IntegrandoComPagamento;
 
 /*
@@ -34,6 +38,8 @@ public class PaymentController {
 	private ShoppingCart shoppingCart;
 	@Autowired
 	private RestTemplate restTemplate;
+	@Autowired
+	private MailSender mailer;
 
 	/* Basta que retornemos um objeto do tipo Callable, que existe desde o Java 5 e é um análogo ao 
 	 * objeto tipo Runnable, muito comum para quem usaThreads. A única diferença do Callable é que ele 
@@ -89,10 +95,24 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/success")
-	public String success() {
+	public String success(@AuthenticationPrincipal User user) {
 
+		//enviando e-mail para o usuário quando recebermos sucesso !
+		sendNewPurchaseMail(user);
 		return "payment/success";
 	}
 
+	private void sendNewPurchaseMail(User user) {
+		
+		SimpleMailMessage email = new SimpleMailMessage();
+		email.setFrom("schiozer@gmail.com");
+		
+		System.out.println("Email cadastrado: " + user.getEmail());
+		
+		email.setTo("schiozer@yahoo.com.br");
+		email.setSubject("Nova compra");
+		email.setText("corpo do email");
+		mailer.send(email);
+	}
 	
 }

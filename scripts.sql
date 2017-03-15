@@ -23,6 +23,8 @@ insert into casadocodigo.User_Role(User_login,roles_name) values('schiozer','ROL
 insert into casadocodigo.User_Role(User_login,roles_name) values('admin','ROLE_ADMIN');
 insert into casadocodigo.User_Role(User_login,roles_name) values('tuk','ROLE_ADMIN');
 
+update casadocodigo.User set email = 'schiozer@yahoo.com.br' where login = 'tuk';
+
 update casadocodigo.User set password = 'schiozer' where login = 'schiozer';
 update casadocodigo.User set name = 'Fabio Tuk' where login = 'tuk';
 select * from cas	adocodigo.User ;

@@ -22,10 +22,24 @@ public class ProductDAO {
 		manager.persist(product);
 	}
 	
+	/*
+	 * Explicação do joing fetch
+	 * 
+	 * http://www.objectdb.com/java/jpa/query/jpql/from
+	 * 
+	 * O joing fetch faz o early load
+	 * */
 	public List<Product> list() {
 		return manager.createQuery("select distinct(p) from Product p join fetch p.prices", Product.class).getResultList();
 	}
-	
+
+	/*
+	 * Para testar o lazy load que o Spring tem suporte. Ver getServletFilters em ServlerSpringMVC
+	 * */
+	public List<Product> list2() {
+		return manager.createQuery("select distinct(p) from Product p", Product.class).getResultList();
+	}
+
 	public Product find(Integer id){
 		return manager.find(Product.class, id);
 	}

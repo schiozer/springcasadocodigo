@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
@@ -105,12 +106,17 @@ public class ProductsController {
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	@Cacheable(value="books")
-	public ModelAndView list() {
-		
-		System.out.println("Carregando os produtos");
+	public ModelAndView list(@RequestParam(value="lazy", required=false) String lazy) {
 		
 		ModelAndView modelAndView = new ModelAndView("products/list");
-		modelAndView.addObject("products", productDAO.list());
+		
+		if (lazy != null && lazy.equals("1")) {
+			modelAndView.addObject("products", productDAO.list2());
+			System.out.println("Carregando os produtos com LAZY solved");
+		} else {
+			modelAndView.addObject("products", productDAO.list());
+			System.out.println("Carregando os produtos");
+		}
 		
 		return modelAndView;
 	}

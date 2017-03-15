@@ -2,6 +2,7 @@ package br.com.casadocodigo.loja.conf;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -14,12 +15,15 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -169,6 +173,36 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public LocaleResolver localeResolver(){
 		return new CookieLocaleResolver();
+	}
+	
+	/*
+	 * Quando você invoca o método enable() na classe DefaultServletHandlerConfigurer, você está informando para o Spring MVC que, caso ele não consiga 
+	 * resolver o endereço, ele deve delegar a chamada para o Servlet Container em uso. Pronto, agora você já consegue servir os seus conteúdos estáticos. 
+	 * Lembre-se de deixá-los dentro de uma pasta específica, para ficar fácil de você configurar
+	 * */
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		
+		configurer.enable();
+	}
+	
+	@Bean
+	public MailSender mailSender() {
+		
+		JavaMailSenderImpl javaMailSenderImpl = new JavaMailSenderImpl();
+		
+		javaMailSenderImpl.setHost("smtp.gmail.com");
+		javaMailSenderImpl.setPassword("JucaJalet12#$");
+		javaMailSenderImpl.setPort(587);
+		javaMailSenderImpl.setUsername("schiozer@gmail.com");
+		
+		Properties mailProperties = new Properties();
+		
+		mailProperties.put("mail.smtp.auth", true);
+		mailProperties.put("mail.smtp.starttls.enable", true);
+		
+		javaMailSenderImpl.setJavaMailProperties(mailProperties);
+		return javaMailSenderImpl;
 	}
 
 }
