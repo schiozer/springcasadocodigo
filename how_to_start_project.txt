@@ -62,3 +62,23 @@ para gerar o pacote de instalação
 
 página 211
 16.2 Qual banco será usado no Heroku
+Eis um ponto que pode ter ficado na sua cabeça em relação ao banco usado para o ambiente de produção. O leitormais atento deve ter notado que foi usado o PostgreSQL em vez do MYSQL. Fomos por este caminho apenas
+porque o Heroku usa o Postgre como default.
+
+O Heroku faz todo processo de deploy ser baseado no git, de modo que é imprescindível que você o tenha instalado em sua máquina
+
+export
+DATABASE_URL=postgres://user:password@localhost:5432/nomeDaApp
+
+Para realizar o download do Heroku siga os passos sugeridos neste link:
+https://toolbelt.heroku.com/.
+
+não precisa instalar o GIT se já o tiver feito.
+
+no diretório da aplicação, rodar .... : heroku apps:create cdcspringmvcschiozer
+
+o nonme da aplicação é chave única do heroku todo.
+
+criar um arquivo chamado Procfile, com o seguinte conteúdo, e tudo na mesma linha:
+web: java $JAVA_OPTS -jar -Dspring.profiles.active=prod target/dependency/webapp-runner.jar --port $PORT target/*.war
+
