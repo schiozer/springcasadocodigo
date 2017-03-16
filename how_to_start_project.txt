@@ -46,7 +46,7 @@ Código Fonte do Projeto, precisamos pegar o ProductBuilder
 https://github.com/livrospringmvc/lojacasadocodigo
 
 repositório
-https://github.com/livrospringmvc/lojacasadocodigo/blob/master/src/test/java/br/com/casadocodigo/loja/builders/ProductBuilder.java
+	
 
 
 Deploy no Heroku
@@ -59,6 +59,11 @@ instala dentro de alguma pasta, eu havia colocado dentro de java, coloca dentro 
 mvn package
 
 para gerar o pacote de instalação
+
+para executar o package e ver se funciona:
+java -jar target/dependency/webapp-runner.jar target/*.war
+
+
 
 página 211
 16.2 Qual banco será usado no Heroku
@@ -81,4 +86,28 @@ o nonme da aplicação é chave única do heroku todo.
 
 criar um arquivo chamado Procfile, com o seguinte conteúdo, e tudo na mesma linha:
 web: java $JAVA_OPTS -jar -Dspring.profiles.active=prod target/dependency/webapp-runner.jar --port $PORT target/*.war
+
+Trabalhando com heroku
+
+https://devcenter.heroku.com/articles/heroku-cli
+
+https://dashboard.heroku.com/auth/heroku/callback?!=&code=169f2534-51f7-4657-b048-1438c02768c3
+
+
+heroku login
+
+para criar um app no heroku
+heroku apps:create cdcspringmvcschiozer
+
+para realizar deploy no heroku
+git push heroku master
+
+heroku ps:scale web=1
+o número que se coloca é o número de dynos, tenho acesso free dyno, que me permite ter apenas um dyno que morre com 30 minutos de inatividade, ou seja, é apenas para testes mesmo.
+depois disso preciso melhorar meu esquema, :)
+
+abrir a aplicação, vai direcionar para o browser
+heroku open
+
+
 
