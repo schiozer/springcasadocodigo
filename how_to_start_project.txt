@@ -124,4 +124,23 @@ heroku open
 
 
 
-Instalando o Postgre do Heroku
+Para se cnectar no Heroku Postgre pelo SQL Developer
+
+Esse site ajuda
+https://devcenter.heroku.com/articles/connecting-to-heroku-postgres-databases-from-outside-of-heroku
+
+Baixe o JDBC para Postgre do SQL developer
+
+Copie para dentro do dir do SQLdeveloper, exemplo:
+D:\projetos\FMW7\sqldeveloper\jdbc\postgresql-42.0.0\postgresql-42.0.0.jar
+
+Depois disso, entrar no SQL Developer e criar a conexão de POstgree de acordo com os dados do Heroku. Não vai funcionar por que precisa do SSL diponível: o arquivo connections.xml no meu exemplo se encontra:
+
+C:\Users\Fabio\AppData\Roaming\SQL Developer\system4.1.1.19.59\o.jdeveloper.db.connection.12.2.1.0.42.150520.751
+
+Procurar a conexão criada dentro do arquivo e acrescentar o sslmode=required no final, como no exemplo abaixo:
+
+         <StringRefAddr addrType="customUrl">
+            <Contents>jdbc:postgresql://ec2-54-225-107-107.compute-1.amazonaws.com:5432/d3v6qoeh3m8qv2?sslmode=require</Contents>
+         </StringRefAddr>
+
