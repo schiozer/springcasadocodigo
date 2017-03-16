@@ -1,4 +1,10 @@
 
+ajuda grupo do google
+
+https://groups.google.com/forum/?hl=pt-BR#!forum/livro-springmvc
+
+
+
 iniciando JBoss Forge para criar o projeto
 $caminhoParaSuaInstalacao/bin/forge
 
@@ -75,6 +81,13 @@ O Heroku faz todo processo de deploy ser baseado no git, de modo que é impresci
 export
 DATABASE_URL=postgres://user:password@localhost:5432/nomeDaApp
 
+o meu é
+
+DATABASE_URL=postgres://grjlexanmnjcbw:131ed702d885eaacf54960ef560ec9045cbb8fa164080842b8bd4dbefe063fb3@ec2-54-225-107-107.compute-1.amazonaws.com:5432/d3v6qoeh3m8qv2
+
+
+
+
 Para realizar o download do Heroku siga os passos sugeridos neste link:
 https://toolbelt.heroku.com/.
 
@@ -111,3 +124,4 @@ heroku open
 
 
 
+Instalando o Postgre do Heroku
