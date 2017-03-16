@@ -1,10 +1,10 @@
 
 
-
+table desc;
 
 select * from user_role;
 
-select * from user ;
+select * from t_user ;
 
 
 select * from casadocodigo.product;
